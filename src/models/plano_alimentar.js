@@ -1,14 +1,8 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Plano_alimentar extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+
     static associate(models) {
       Plano_alimentar.belongsTo(models.Consultas, {
         foreignKey: 'id_consultaPlano'
@@ -22,9 +16,9 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'id_planoAlimentar'
       });
 
-      // Plano_alimentar.hasMany(models.refeicoes_alimentos, {
-      //   foreignKey: 'id_plano'
-      // });
+      Plano_alimentar.hasMany(models.refeicoes_alimentos, {
+        foreignKey: 'id_plano'
+      });
     }
   }
   Plano_alimentar.init({

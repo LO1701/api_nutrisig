@@ -15,12 +15,9 @@ module.exports = (sequelize, DataTypes) => {
       });
 
       Alimentos.belongsToMany(models.Refeicoes, {
-        through: 'refeicoes_alimentos'
+        through: 'refeicoes_alimentos',
+        foreignKey: 'id_alimentos'
       });
-
-      // Alimentos.hasMany(models.refeicoes_alimentos, {
-      //   foreignKey: 'id_alimentos'
-      // });
     }
   }
   Alimentos.init({

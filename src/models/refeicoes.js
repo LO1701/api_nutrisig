@@ -14,9 +14,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'id_usuario'
       });
 
-      // Refeicoes.hasMany(models.refeicoes_alimentos, {
-      //   foreignKey: 'id_refeicoes'
-      // });
+      Refeicoes.belongsToMany(models.Alimentos, {
+        through: 'refeicoes_alimentos',
+        foreignKey: 'id_refeicoes'
+      });
     }
   }
   Refeicoes.init({
