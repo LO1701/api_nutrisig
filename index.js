@@ -10,6 +10,7 @@ const routesRefeicao = require('./src/routes/refeicaoRoutes');
 const cors = require('cors');
 const routesAlimentos = require('./src/routes/alimentoRoutes');
 const refeicao_alimentoRoutes = require('./src/routes/refeicao_alimentoRoutes');
+const anamneseRoutes = require('./src/routes/anamneseRoutes');
 require('dotenv').config();
 
 
@@ -25,6 +26,7 @@ app.use(routesPlano_alimentar);
 app.use(routesRefeicao);
 app.use(routesAlimentos);
 app.use(refeicao_alimentoRoutes);
+app.use(anamneseRoutes);
 app.use(authRoutes);
 
 app.listen(process.env.PORT, () => console.log('servidor rodando'));
