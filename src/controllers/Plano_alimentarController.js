@@ -92,6 +92,27 @@ class Plano_alimentarController {
             res.status(500).json({msg: 'Erro no servidor, tente mais tarde'});
         }
     }
+
+    static async buscaUltimoPlanoCadastrado(req, res) {
+        const id_consultaPlano = req.params.id_consulta;
+        const id_pacientePlanoAlimentar = req.params.id_paciente;
+
+        try {
+            const planos = await planoServices.buscaRegistros({id_consultaPlano: id_consultaPlano, id_pacientePlanoAlimentar: id_pacientePlanoAlimentar});
+
+            if(planos.length > 0){
+                const ultimoPlano = planos.pop();
+
+                return res.status(200).json(ultimoPlano);
+            }else{
+                return res.status(200).json(planos);
+            }
+
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({msg: 'Erro no servidor, tente mais tarde'});
+        }
+    }
 }
 
 module.exports = Plano_alimentarController;

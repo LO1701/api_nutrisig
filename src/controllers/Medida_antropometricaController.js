@@ -101,6 +101,27 @@ class Medida_antropometricaController {
             res.status(500).json({msg: 'Erro no servidor, tente mais tarde'});
         }
     }
+
+    static async buscaUltimaMedidaCadastrada(req, res) {
+        const id_consultaMedida = req.params.idConsulta;
+
+        try {
+            const medidas = await medidaServices.buscaRegistros({id_consultaMedida: id_consultaMedida});
+
+            if(medidas.length > 0){
+                const ultimaMedidaCadastrada = medidas.pop();
+                
+                return res.status(200).json(ultimaMedidaCadastrada);
+            }else{
+
+                return res.status(200).json(medidas);
+            }
+
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({msg: 'Erro no servidor, tente mais tarde'});
+        }
+    }
 }
 
 module.exports = Medida_antropometricaController;

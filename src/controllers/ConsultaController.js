@@ -89,6 +89,25 @@ class ConsultaController {
             res.status(500).json({msg: 'Erro no servidor, tente mais tarde'});
         }
     }
+
+    static async buscaUltimaConsultaCadastrada(req, res) {
+        const idPaciente = req.params.idPaciente;
+
+        try {
+            const consulta = await consultaServices.buscaRegistros({id_paciente: idPaciente});
+                    
+            if(consulta.length > 0){
+                const ultimaConsulta = consulta.pop();
+                return res.status(200).json(ultimaConsulta);
+            }else{
+                return res.status(200).json(consulta);
+            }
+            
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({msg: 'Erro no servidor, tente mais tarde'});
+        }
+    }
 }
 
 module.exports = ConsultaController;
