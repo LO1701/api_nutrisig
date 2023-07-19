@@ -22,7 +22,9 @@ class PacienteController {
             
             await pacienteServices.criaRegistro(pacienteNovo, {id_usuario: idUser});
 
-            res.status(201).json({msg: 'Paciente criado com sucesso'});
+            const pacienteProcuradoEmail = await pacienteServices.procuraRegistroEmail(pacienteNovo.email);
+
+            res.status(201).json({msg: 'Paciente criado com sucesso', id: pacienteProcuradoEmail.id});
             
             if(pacienteNovo.email)
                 encaminhandoEmail(pacienteNovo.email);
