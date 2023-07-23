@@ -12,8 +12,13 @@ class ConsultaController {
         try {
             
             await consultaServices.criaRegistro(consultaNova, {id_paciente: idPaciente});
+            
+            const ultimaConsultaPaciente = await consultaServices.buscaRegistros({id_paciente: idPaciente});
 
-            res.status(201).json({msg: 'Consulta criada com sucesso'});
+            const enviarUltimaConsulta = ultimaConsultaPaciente.pop();
+            console.log(enviarUltimaConsulta)
+
+            res.status(201).json({msg: 'Consulta criada com sucesso', id: enviarUltimaConsulta.id});
 
         } catch (error) {
             console.log(error);
