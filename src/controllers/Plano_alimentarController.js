@@ -14,7 +14,11 @@ class Plano_alimentarController {
         try {          
             await planoServices.criaRegistro(planoNovo, {id_consultaPlano: id_consultaPlano, id_pacientePlanoAlimentar: id_pacientePlanoAlimentar});
             
-            return res.status(201).json({msg: "Plano alimentar criado com sucesso"});
+            const IdplanoNovo = await planoServices.buscaRegistros({id_consultaPlano: id_consultaPlano, id_pacientePlanoAlimentar: id_pacientePlanoAlimentar});
+            
+            const ultimoIdplanoNovo = IdplanoNovo.pop();
+
+            return res.status(201).json({msg: "Plano alimentar criado com sucesso", id: ultimoIdplanoNovo.id});
                 
         } catch (error) {
             console.log(error);
