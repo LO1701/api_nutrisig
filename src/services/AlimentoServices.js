@@ -8,11 +8,9 @@ class AlimentoServices extends Services{
     }
 
     async criaAlimentos(id){
-
-        const alimentosSalvos = [];
         
         for(let i = 0; i < alimentosTaco.length; i++){
-            alimentosSalvos.push({
+            await baseDados[this.modelo].create({
                 nome: alimentosTaco[i].description,
                 categoria: alimentosTaco[i].category,
                 colesterol: alimentosTaco[i].cholesterol_mg,
@@ -30,10 +28,6 @@ class AlimentoServices extends Services{
             });
         }
 
-        for(let i = 0; i < alimentosTaco.length; i++){
-
-            await baseDados[this.modelo].create(alimentosSalvos[i]);
-        }
     }
 }
 
