@@ -137,6 +137,20 @@ class PacienteController {
             res.status(500).json({msg: 'Erro no servidor, tente mais tarde'});
         }
     }
+
+    static async loginPaciente(req, res) {
+        const { cpf } = req.body
+        
+        try {
+
+            const paciente = await pacienteServices.buscaPaciente(cpf);
+
+            res.status(200).json(paciente);
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({msg: 'Erro no servidor, tente mais tarde'});
+        }
+    }
 }
 
 module.exports = PacienteController;

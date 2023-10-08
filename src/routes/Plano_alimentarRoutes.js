@@ -9,6 +9,7 @@ routesPlano_alimentar
     .get('/usuario/paciente/:id_paciente/consulta/:id_consulta/plano', AuthUsuario.verificaToken, Plano_alimentarController.buscaTodosPlanos)  
     .get('/usuario/paciente/:id_paciente/consulta/:id_consulta/plano/ultimo', AuthUsuario.verificaToken, Plano_alimentarController.buscaUltimoPlanoCadastrado)  
     .get('/usuario/paciente/consulta/:id_consulta/plano/:id', AuthUsuario.verificaToken, Plano_alimentarController.buscaPlanoId)   
+    .get('/usuario/paciente/logado/consulta/:id_consulta/plano/:id', Plano_alimentarController.buscaPlanoId)   
     .put('/usuario/paciente/consulta/:id_consulta/plano/:id', AuthUsuario.verificaToken, Plano_alimentarController.atualizaPlano)   
     .delete('/usuario/paciente/consulta/:id_consulta/plano/:id', AuthUsuario.verificaToken, Plano_alimentarController.deletaPlano)  
 

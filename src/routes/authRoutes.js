@@ -7,5 +7,4 @@ const authRoutes = express.Router();
 authRoutes.post('/login', AuthController.login);
 authRoutes.get('/session', AuthUsuario.verificaToken, AuthController.getSession);
 
-
 module.exports = authRoutes;

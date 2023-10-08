@@ -5,6 +5,7 @@ const AuthUsuario = require('../middleware/AuthUsuario.js');
 const routesPacientes = express.Router();
 
 routesPacientes
+    .post('/usuario/login/paciente', PacienteController.loginPaciente) // essa rota é destinada para quando o paciente vai ver seu plano alimentar (ele encaminha seu cpf)
     .post('/usuario/:idUser/paciente', AuthUsuario.verificaToken, PacienteController.criaPaciente) // depois do admin criar o usuario nutricionista, ela deve acessar essa rota para cadastrar sua senha
     .get('/usuario/:idUser/paciente', AuthUsuario.verificaToken, PacienteController.buscaTodosPacientes) // essa rota é destinada pro admin buscar todos os usuários 
     .get('/usuario/:idUser/paciente/:id', AuthUsuario.verificaToken, PacienteController.buscaPacienteId) // essa rota é destinada pro admin buscar um usuário por id 
