@@ -145,7 +145,12 @@ class PacienteController {
 
             const paciente = await pacienteServices.buscaPaciente(cpf);
 
-            res.status(200).json(paciente);
+            if(!paciente){
+                return res.status(404).json({msg: 'CPF inválido'});
+            }else{
+                res.status(200).json(paciente);
+            }
+
         } catch (error) {
             console.log(error);
             res.status(500).json({msg: 'Erro no servidor, tente mais tarde'});
