@@ -14,8 +14,16 @@ class Medida_antropometricaController {
 
         try {          
             await medidaServices.criaRegistro(medidaNova, {id_consultaMedida: id_consultaMedida});
-            
-            return res.status(201).json(medidaNova);
+
+            const medidas = await medidaServices.buscaRegistros({id_consultaMedida: id_consultaMedida});
+
+            if(medidas.length > 0){
+                const ultimaMedidaCadastrada = medidas.pop();
+                
+                return res.status(200).json(ultimaMedidaCadastrada);
+            }else{
+                return res.status(200).json(medidas);
+            }
                 
         } catch (error) {
             console.log(error);

@@ -14,6 +14,18 @@ class AnamneseServices extends Services{
             await baseDados[this.modelo].create(element);
         });
     }
+
+    async atualizaAnamneses(anamneseAtualizada, id_consultaAnamnese){
+
+        anamneseAtualizada.forEach( async (element) => {
+
+            await baseDados[this.modelo].update(element, {
+                where:{
+                    id_consultaAnamnese: id_consultaAnamnese
+                }
+            });
+        });
+    }
 }
 
 module.exports = AnamneseServices;

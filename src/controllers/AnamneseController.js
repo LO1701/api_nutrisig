@@ -52,16 +52,11 @@ class AnamneseController {
     
     static async atualizaAnamnese(req, res) {
         const propriedades = req.body;
-        const idAnamnese = req.params.id;
         const id_consultaAnamnese = req.params.id_consultaAnamnese;
 
         try {
-            const anamneseProcurada = await anamneseServices.buscandoRegistroPorId(idAnamnese, {id_consultaAnamnese:id_consultaAnamnese});
 
-            if(!anamneseProcurada)
-                return res.status(404).json({msg: 'Anamnese não encontrada'});
-
-            await anamneseServices.atualizaRegistro(propriedades, idAnamnese, {id_consultaAnamnese:id_consultaAnamnese});
+            await anamneseServices.atualizaAnamneses(propriedades, id_consultaAnamnese);
 
             res.status(200).json({msg: 'Anamnese atualizada com sucesso'});
         } catch (error) {
