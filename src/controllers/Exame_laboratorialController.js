@@ -13,7 +13,15 @@ class Exame_laboratorialController {
             
             await exameServices.criaRegistro(exameNovo, {id_consultaExame: id_consultaExame});
 
-            res.status(201).json({msg: 'Exame adicionado com sucesso'});
+            const exames = await exameServices.buscaRegistros({id_consultaExame: id_consultaExame});
+
+            if(exames.length > 0){
+                const ultimoExameCadastrado = exames.pop();
+                
+                return res.status(200).json(ultimoExameCadastrado);
+            }else{
+                return res.status(200).json(exames);
+            }
 
         } catch (error) {
             console.log(error);

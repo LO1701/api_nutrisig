@@ -16,11 +16,11 @@ class AnamneseServices extends Services{
     }
 
     async atualizaAnamneses(anamneseAtualizada, id_consultaAnamnese){
-
         anamneseAtualizada.forEach( async (element) => {
-
+         
             await baseDados[this.modelo].update(element, {
                 where:{
+                    id: element.id,
                     id_consultaAnamnese: id_consultaAnamnese
                 }
             });
