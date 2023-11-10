@@ -120,19 +120,18 @@ class Refeicao_alimentoController {
     }
     
     static async atualizaRefeicoes_alimentos(req, res) {
-        const propriedades = req.body;
-        const id = req.params.id
+        const refeicaoAlimentoNovo = req.body;
         const id_alimentos = req.params.id_alimentos;
         const id_refeicoes = req.params.id_refeicoes;
         const id_plano = req.params.id_plano;
 
         try {
-            const plano = await refeicaoAlimentosServices.buscandoRegistroPorId(id, {id_alimentos: id_alimentos,id_refeicoes: id_refeicoes, id_plano: id_plano});
+            // const plano = await refeicaoAlimentosServices.buscandoRegistroPorId(id, {id_alimentos: id_alimentos,id_refeicoes: id_refeicoes, id_plano: id_plano});
 
-            if(!plano)
-                return res.status(404).json({msg: 'Alimento não encontrado'});
+            // if(!plano)
+            //     return res.status(404).json({msg: 'Alimento não encontrado'});
 
-            await refeicaoAlimentosServices.atualizaRegistro(propriedades, id, {id_alimentos: id_alimentos,id_refeicoes: id_refeicoes, id_plano: id_plano});
+            await refeicaoAlimentosServices.atualizaRefeicaoAlimento(refeicaoAlimentoNovo, {id_refeicoes: id_refeicoes, id_plano: id_plano});
 
             res.status(200).json({msg: 'Alimento atualizado com sucesso'});
 
